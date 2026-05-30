@@ -1,0 +1,1831 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nitish Joshi — Senior Java Backend & AI Integration Engineer</title>
+    
+    <!-- Google Fonts: Space Grotesk for Headings, JetBrains Mono for Code / Tech Details -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS v3 via Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              brand: {
+                blue: '#4d9fff',
+                bluehover: '#3584e4',
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      /* --- Custom CSS Variables & Animations --- */
+      :root {
+        --bg-color: #0a0a0a; /* Pristine Editorial deep pitch-black */
+        --text-color: #ffffff;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --grid-color: rgba(77, 159, 255, 0.12); /* Subtle electric blue nodes */
+        --radial-glow: radial-gradient(circle at 50% 50%, rgba(77, 159, 255, 0.15) 0%, transparent 65%);
+        --card-bg: rgba(255, 255, 255, 0.03); /* Translucent sleek containers */
+        --accent-color: #4d9fff; /* Electric blue primary */
+        --accent-glow: rgba(77, 159, 255, 0.2);
+        --accent-bg: rgba(77, 159, 255, 0.06);
+        --subtitle-color: #a1a1aa; /* Elegant slate zinc-400 font */
+        --card-hover-border: rgba(77, 159, 255, 0.45);
+      }
+
+      :root.light {
+        --bg-color: #f8fafc; /* Pristine editorial ivory text field */
+        --text-color: #0f172a;
+        --border-color: rgba(15, 23, 42, 0.08);
+        --grid-color: rgba(37, 99, 235, 0.08);
+        --radial-glow: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.06) 0%, transparent 65%);
+        --card-bg: rgba(255, 255, 255, 0.7);
+        --accent-color: #2563eb; /* High contrast editorial dark blue */
+        --accent-glow: rgba(37, 99, 235, 0.12);
+        --accent-bg: rgba(37, 99, 235, 0.05);
+        --subtitle-color: #475569;
+        --card-hover-border: rgba(37, 99, 235, 0.35);
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Space Grotesk', sans-serif;
+        transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-x: hidden;
+      }
+
+      /* Custom Monospace Utility mapping to JetBrains */
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace !important;
+      }
+
+      /* Grid Blueprint Layout Background */
+      .grid-bg {
+        background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+        background-size: 24px 24px;
+        opacity: 0.75;
+        mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+      }
+
+      /* Hero Radial Accent Glow */
+      .hero-glow {
+        background: var(--radial-glow);
+        filter: blur(80px);
+        pointer-events: none;
+      }
+
+      /* Editorial Floating Section Boxes */
+      .mono-box {
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 600;
+        border: 1px solid var(--accent-color);
+        color: var(--accent-color);
+        padding: 3px 8px;
+        border-radius: 4px;
+        background-color: var(--accent-bg);
+        display: inline-flex;
+        align-items: center;
+        letter-spacing: 0.05em;
+        transition: all 0.3s ease;
+      }
+
+      /* Highly Polished Cards with Gentle Glows */
+      .portfolio-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .portfolio-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--card-hover-border);
+        box-shadow: 0 12px 40px -15px var(--accent-glow);
+      }
+
+      /* Dotted timeline connectors */
+      .timeline-dot {
+        width: 12px;
+        height: 12px;
+        background-color: var(--accent-color);
+        border-radius: 2px; /* Distinctive square nodes */
+        display: inline-block;
+        box-shadow: 0 0 10px var(--accent-glow);
+        position: relative;
+        z-index: 10;
+        transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Glow titles on dark */
+      .glow-text {
+        background: linear-gradient(135deg, var(--accent-color) 0%, #ffffff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 50px rgba(77, 159, 255, 0.3);
+      }
+
+      :root.light .glow-text {
+        background: linear-gradient(135deg, var(--accent-color) 0%, #0f172a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+      }
+
+      /* Custom Typing caret */
+      .typing-caret::after {
+        content: '_';
+        animation: blink 0.9s step-end infinite;
+      }
+
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+
+      /* Custom Scroll-reveal classes */
+      .reveal {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Blur effects specifically optimized */
+      .glass-blur {
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+
+      .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .scrollbar-thin::-webkit-scrollbar-track {
+        background: rgba(0,0,0,-0.1);
+      }
+      .scrollbar-thin::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+      }
+      .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color);
+      }
+
+      /* print reveal layout structure */
+      @media print {
+        @page {
+          margin: 1.2cm 1.5cm;
+          size: A4;
+        }
+        body {
+          background: #ffffff !important;
+          color: #0d0d0c !important;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+          font-size: 10pt !important;
+          line-height: 1.4 !important;
+          overflow: visible !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        /* Completely wipe active digital interface containers from output page stream */
+        nav, main, footer, button, #theme-toast, #theme-toggle, .grid-bg, .hero-glow, #resume-modal {
+          display: none !important;
+          visibility: hidden !important;
+          height: 0 !important;
+          overflow: hidden !important;
+        }
+        .print-ready-resume {
+          display: block !important;
+          visibility: visible !important;
+          background: #ffffff !important;
+          color: #0d0d0c !important;
+          width: 100% !important;
+          height: auto !important;
+          position: static !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+      }
+      .print-ready-resume {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="relative min-h-screen antialiased selection:bg-brand-blue/30 overflow-x-hidden">
+    
+    <!-- Blueprint / Grid System Layout -->
+    <div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+
+    <!-- Sticky Navigation Interface -->
+    <nav class="fixed top-0 inset-x-0 z-40 border-b glass-blur transition-all duration-300" style="border-color: var(--border-color); background-color: rgba(11, 15, 25, 0.05)">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <!-- Logo / Config Signature -->
+        <a href="#hero" class="flex items-center space-x-2 font-mono text-sm tracking-tight hover:opacity-80 transition-all">
+          <span class="text-brand-blue font-bold">&lt;NJ&gt;</span>
+          <span class="text-xs font-semibold uppercase opacity-60">nitish.joshi()</span>
+        </a>
+
+        <!-- Desktop Navigation Targets -->
+        <div class="hidden md:flex items-center space-x-8 font-mono text-xs font-medium tracking-wide">
+          <a href="#about" class="hover:text-brand-blue transition-colors text-gray-400 dark:hover:text-white">01//ABOUT</a>
+          <a href="#skills" class="hover:text-brand-blue transition-colors text-gray-400 dark:hover:text-white">02//STACK</a>
+          <a href="#experience" class="hover:text-brand-blue transition-colors text-gray-400 dark:hover:text-white">03//TELEMETRY</a>
+          <a href="#projects" class="hover:text-brand-blue transition-colors text-gray-400 dark:hover:text-white">04//PROTOCOLS</a>
+          <a href="#hobbies" class="hover:text-brand-blue transition-colors text-gray-400 dark:hover:text-white">05//MINDSHARE</a>
+          <a href="#contact" class="hover:text-brand-blue transition-colors text-gray-400 dark:hover:text-white">06//CONTACT</a>
+        </div>
+
+        <!-- Utility Group (Resume Action + Theme Switcher) -->
+        <div class="flex items-center space-x-4">
+          <!-- CV direct link -->
+          <a href="javascript:void(0)" onclick="openResumeModal()" class="hidden sm:inline-flex items-center space-x-1.5 font-mono text-xs px-3 py-1.5 border rounded-md hover:border-brand-blue hover:text-brand-blue transition-all cursor-pointer" style="border-color: var(--border-color)">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>GET_CV</span>
+          </a>
+
+          <!-- Master Dark/Light Switcher -->
+          <button id="theme-toggle" class="p-2 border rounded-md hover:scale-105 transition-all text-gray-400 hover:text-brand-blue bg-card-bg cursor-pointer" style="border-color: var(--border-color); background-color: var(--card-bg)" aria-label="Toggle visual palette">
+            <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+            <i data-lucide="moon" class="w-4 h-4 dark:hidden text-[#111827]"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Master Layout Envelope -->
+    <main class="max-w-7xl mx-auto px-6 relative z-10">      <!-- --- SECTION 00: HERO BLOCK --- -->
+      <section id="hero" class="min-h-screen flex flex-col justify-center pt-24 pb-16 relative">
+        <!-- Hero Ambient Bubble -->
+        <div class="absolute inset-x-0 top-1/4 mx-auto w-full max-w-4xl h-96 hero-glow z-0"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Text Segment -->
+          <div class="lg:col-span-7">
+            <!-- Metatag -->
+            <div class="inline-flex items-center space-x-2.5 mb-6">
+              <span class="mono-box">00</span>
+              <span class="font-mono text-xs uppercase tracking-widest text-brand-blue font-semibold">JVM ENVIRONMENT_INITIALIZATION</span>
+            </div>
+
+            <!-- Headline (SUI.io aesthetics: massive, geometric, high impact) -->
+            <h1 class="text-5xl md:text-[5.5rem] font-bold tracking-tighter leading-[0.9] text-gray-900 dark:text-white mb-6">
+              NITISH JOSHI
+            </h1>
+            <div class="mb-4">
+              <span class="glow-text text-3xl md:text-6xl font-bold block tracking-tight leading-tight mb-2">
+                SINKING CODE DEEPER.
+              </span>
+              <span class="text-2xl md:text-[3.25rem] font-bold block leading-tight text-gray-400 dark:text-gray-500">
+                SHIPPING LIVE AI SYSTEMS.
+              </span>
+            </div>
+
+            <!-- Dynamic Text Rotator -->
+            <div class="mt-8 flex flex-wrap items-center space-x-2 text-lg md:text-2xl text-gray-400 font-medium">
+              <span class="text-gray-500 font-mono text-sm leading-none flex items-center">&gt; run /usr/bin/role --opt=</span>
+              <div class="inline-flex items-center">
+                <span id="typing-text" class="text-brand-blue font-mono font-bold"></span>
+                <span class="typing-caret text-brand-blue font-mono font-bold"></span>
+              </div>
+            </div>
+
+            <!-- Subheading & Position Summary -->
+            <p class="mt-8 text-base md:text-lg max-w-2xl leading-relaxed opacity-85" style="color: var(--subtitle-color)">
+              Dublin-based Java Backend Specialist featuring deep JVM experience (<span class="text-brand-blue font-semibold font-mono text-sm">Spring Boot / Concurrency / Kafka</span>) 
+              unified with modern generative architecture integration. I engineer solid enterprise databases and pipeline live LLM pipelines with strict rate-limiting, secure models, and failproof logic.
+            </p>
+
+            <!-- Core Call to Action / Direct Links -->
+            <div class="mt-10 flex flex-wrap gap-4 font-mono text-xs">
+              <a href="#projects" class="bg-brand-blue hover:bg-brand-bluehover text-black font-semibold px-6 py-3.5 rounded flex items-center space-x-2 transition-all shadow-lg shadow-brand-blue/10">
+                <span>EXPLORE_BUILDS</span>
+                <i data-lucide="arrow-right-circle" class="w-4 h-4"></i>
+              </a>
+              <button onclick="openResumeModal()" class="portfolio-card border-brand-blue/40 text-brand-blue hover:bg-brand-blue/10 px-6 py-3.5 rounded flex items-center space-x-2 cursor-pointer transition-all">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                <span>GET_RESUME_CV</span>
+              </button>
+              <a href="#contact" class="portfolio-card hover:bg-gray-800/10 dark:hover:bg-gray-800/40 px-6 py-3.5 rounded flex items-center space-x-2">
+                <i data-lucide="terminal" class="w-4 h-4"></i>
+                <span>CONNECT_SHELL</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- JVM Live Streaming Console Graphic -->
+          <div class="lg:col-span-5 relative hidden lg:block">
+            <!-- Surrounding glow accent -->
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-blue to-purple-600 rounded-lg blur opacity-15"></div>
+            
+            <div class="relative portfolio-card p-5 rounded-lg border bg-black/80 font-mono text-xs select-none" style="border-color: var(--border-color)">
+              <!-- Window top-bar panel -->
+              <div class="flex items-center justify-between pb-3.5 border-b border-white/5 mb-4">
+                <div class="flex items-center space-x-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-500/60 inline-block animate-pulse"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/60 inline-block"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-green-500/60 inline-block animate-ping"></span>
+                </div>
+                <span class="text-[10px] text-brand-blue font-bold uppercase tracking-widest flex items-center">
+                  <i data-lucide="cpu" class="w-3 h-3 mr-1 text-brand-blue"></i> JVM_THREAD_POOL
+                </span>
+                <span class="text-[9px] text-gray-500">LIVE: 18ms</span>
+              </div>
+
+              <!-- CPU & Garbage collection spark panel -->
+              <div class="grid grid-cols-3 gap-2 text-center mb-4">
+                <div class="bg-gray-900/60 border border-white/5 rounded p-2">
+                  <span class="text-gray-500 text-[8px] block uppercase">MEM_HEAP</span>
+                  <span class="text-emerald-400 text-xs font-bold block mt-0.5" id="val-heap">1.24 GB</span>
+                </div>
+                <div class="bg-gray-900/60 border border-white/5 rounded p-2">
+                  <span class="text-gray-500 text-[8px] block uppercase">ACTIVE_THREADS</span>
+                  <span class="text-brand-blue text-xs font-bold block mt-0.5" id="val-threads">42</span>
+                </div>
+                <div class="bg-gray-900/60 border border-white/5 rounded p-2">
+                  <span class="text-gray-500 text-[8px] block uppercase">AI_BUCKET</span>
+                  <span class="text-amber-400 text-xs font-bold block mt-0.5" id="val-tokens">100%</span>
+                </div>
+              </div>
+
+              <!-- Live simulated Thread Pipeline Graph -->
+              <div class="mb-4">
+                <div class="text-[9px] text-gray-500 uppercase tracking-widest mb-1.5 flex justify-between items-center">
+                  <span>Kafka Producer Events (Partitions)</span>
+                  <span class="text-[#22c55e] inline-flex items-center"><span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1 animate-ping"></span> SECURE</span>
+                </div>
+                <div class="h-24 bg-gray-950/80 rounded border border-white/5 p-2 flex flex-col justify-end space-y-1 relative overflow-hidden">
+                  <!-- Horizontal Event Line -->
+                  <div class="absolute inset-x-0 h-px bg-brand-blue/20 top-1/2 -translate-y-1/2"></div>
+                  
+                  <!-- Falling stream node circles -->
+                  <div id="thread-nodes-container" class="absolute inset-0 flex items-center justify-around px-8">
+                    <!-- Event circles with active glow -->
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-blue border border-white/30 animate-bounce transition-all shadow-[0_0_8px_var(--accent-glow)]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 border border-white/30 animate-pulse transition-all shadow-[0_0_8px_rgba(52,211,153,0.4)]" style="animation-delay: 200ms"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-purple-500 border border-white/30 animate-bounce transition-all shadow-[0_0_8px_rgba(168,85,247,0.4)]" style="animation-delay: 450ms"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-blue border border-white/30 animate-pulse transition-all shadow-[0_0_8px_var(--accent-glow)]" style="animation-delay: 150ms"></span>
+                  </div>
+
+                  <!-- Text log line inside graph overlay -->
+                  <div class="absolute bottom-1 right-2 text-[8px] text-gray-500 uppercase tracking-tight" id="partition-offset-txt">PART_0 / OFFSET ::9204</div>
+                </div>
+              </div>
+
+              <!-- Under logs -->
+              <div>
+                <div class="text-[9px] text-gray-500 uppercase tracking-widest mb-1.5">Consolidated Terminal Feed</div>
+                <div class="h-16 bg-black rounded p-2 overflow-hidden scrollbar-thin text-[9px] text-gray-400 space-y-1 select-all" id="live-jmx-feed">
+                  <div>[JMX] Bootstrapping telemetry node connection...</div>
+                  <div class="text-brand-blue">[KAFKA] Producer committed partition 0 offset 194821</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mouse down scroll hints -->
+        <div class="absolute bottom-6 left-0 right-0 flex justify-center opacity-40 select-none pointer-events-none md:flex hidden">
+          <div class="flex flex-col items-center">
+            <span class="font-mono text-[10px] tracking-widest mb-2 uppercase">SCROLL_DOWN_STREAM</span>
+            <div class="w-5 h-8 border-2 rounded-full border-gray-400 p-1 flex justify-center">
+              <span class="w-1 h-2 bg-gray-400 rounded-full animate-bounce"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- --- SECTION 01: THE ARCHITECT (ABOUT) --- -->
+      <section id="about" class="py-24 border-t reveal" style="border-color: var(--border-color)">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <!-- Grid Header -->
+          <div class="lg:col-span-5">
+            <div class="flex items-center space-x-2.5 mb-6">
+              <span class="mono-box">01</span>
+              <span class="font-mono text-xs uppercase tracking-widest text-brand-blue font-semibold">IDENTITY_STATEMENT</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">THE ARCHITECT</h2>
+            
+            <div class="space-y-6 text-base leading-relaxed" style="color: var(--subtitle-color)">
+              <p>
+                I thrive in designing resilient backend systems that survive heavy workloads. I operate mainly under the <span class="text-brand-blue font-semibold">Java Ecosystem</span> environment, orchestrating bulletproof architectures with Spring Boot, writing high-throughput stream integrations with Apache Kafka, and tuning transactional layers in production-level databases.
+              </p>
+              <p>
+                <strong class="text-gray-900 dark:text-white font-semibold">The AI Headline Differentiator:</strong> As systems modernize, simple databases are no longer enough. I bridge the technical corridor between robust backend depth and live generative integration. By coding against customized, high-density LLM interface proxies, I design intelligent search models, security walls, and agent automation that actually execute smoothly in live runtimes without choking on rate limits or API cost spikes.
+              </p>
+              <p>
+                Currently situated in <span class="font-semibold text-gray-900 dark:text-white">Dublin, Ireland</span>, I hold a master-level technical perspective, merging academic rigor with software-engineering practices to build elite products.
+              </p>
+            </div>
+          </div>
+
+          <!-- Factsheet and Metadata Card -->
+          <div class="lg:col-span-7 flex flex-col justify-center">
+            <div class="portfolio-card rounded-md max-w-full font-mono overflow-hidden">
+              <!-- Window top-bar panel -->
+              <div class="flex items-center justify-between px-4 py-2.5 border-b bg-gray-900/40" style="border-color: var(--border-color)">
+                <div class="flex items-center space-x-2">
+                  <span class="w-3 h-3 rounded-full bg-red-500/30 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-yellow-500/30 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-green-500/30 inline-block"></span>
+                </div>
+                <span class="text-xs text-gray-400 select-none">profile-descriptor.json</span>
+                <i data-lucide="info" class="w-3.5 h-3.5 text-gray-500"></i>
+              </div>
+
+              <!-- Fact list inside -->
+              <div class="p-6 md:p-8 space-y-4 text-xs md:text-sm">
+                <div>
+                  <span class="text-gray-500">// Personal coordinates</span>
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-y-1.5 md:gap-y-0 mt-1">
+                    <span class="md:col-span-4 text-brand-blue">"location"</span>
+                    <span class="md:col-span-8 text-semibold">"Dublin, Ireland"</span>
+                  </div>
+                </div>
+                
+                <div class="border-t border-dashed my-2" style="border-color: var(--border-color)"></div>
+
+                <div>
+                  <span class="text-gray-500">// Professional tenure</span>
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-y-1.5 md:gap-y-0 mt-1">
+                    <span class="md:col-span-4 text-brand-blue">"experience"</span>
+                    <span class="md:col-span-8 text-semibold">"~2 Years Professional Software engineering"</span>
+                  </div>
+                </div>
+
+                <div class="border-t border-dashed my-2" style="border-color: var(--border-color)"></div>
+
+                <div>
+                  <span class="text-gray-500">// Architectural focus</span>
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-y-1.5 md:gap-y-0 mt-1">
+                    <span class="md:col-span-4 text-brand-blue">"jvm_focus"</span>
+                    <span class="md:col-span-8 text-purple-400 dark:text-emerald-400">"Highly concurrent Multi-threading, Transactions, Event streams"</span>
+                  </div>
+                </div>
+
+                <div class="border-t border-dashed my-2" style="border-color: var(--border-color)"></div>
+
+                <div>
+                  <span class="text-gray-500">// AI-Integrations</span>
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-y-1.5 md:gap-y-0 mt-1">
+                    <span class="md:col-span-4 text-brand-blue">"artificial_intelligence"</span>
+                    <span class="md:col-span-8 text-[#f59e0b]">"Dynamic API-Proxy Orchestrators, Vector pipelines"</span>
+                  </div>
+                </div>
+
+                <div class="border-t border-dashed my-2" style="border-color: var(--border-color)"></div>
+
+                <div>
+                  <span class="text-gray-500">// Primary contact endpoints</span>
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-y-1.5 md:gap-y-0 mt-1">
+                    <span class="md:col-span-4 text-brand-blue">"communications"</span>
+                    <span class="md:col-span-8 font-semibold text-gray-300 dark:text-gray-200">"nitish.joshi.dev@gmail.com" / "+353 894 980 613"</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- --- SECTION 02: STACK & CORE CAPABILITIES --- -->
+      <section id="skills" class="py-24 border-t reveal" style="border-color: var(--border-color)">
+        <div class="flex items-center space-x-2.5 mb-6">
+          <span class="mono-box">02</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-brand-blue font-semibold">SKILL_INVENTORY</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-12">THE CORE INSTRUMENTATION</h2>
+
+        <!-- Skills Grid of 4 modular cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Card 1: Languages -->
+          <div class="portfolio-card p-8 rounded-lg flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-xs text-brand-blue bg-brand-blue/15 px-3 py-1.5 rounded font-bold uppercase select-none">Languages</span>
+                <i data-lucide="code" class="w-5 h-5 text-brand-blue"></i>
+              </div>
+              <ul class="space-y-4 font-mono text-sm">
+                <li class="flex items-center justify-between">
+                  <span class="font-semibold">Java</span>
+                  <span class="text-xs opacity-60">System Core / JVM 17 &amp; 21</span>
+                </li>
+                <li class="flex items-center justify-between">
+                  <span class="font-semibold">SQL</span>
+                  <span class="text-xs opacity-60">Relational Modeling / Query Tuning</span>
+                </li>
+                <li class="flex items-center justify-between">
+                  <span class="font-semibold">Python</span>
+                  <span class="text-xs opacity-60">AI Algorithms &amp; Automation Scripts</span>
+                </li>
+                <li class="flex items-center justify-between">
+                  <span class="font-semibold">JavaScript</span>
+                  <span class="text-xs opacity-60">Interactive Application Prototyping</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2: Backend & Database Engine -->
+          <div class="portfolio-card p-8 rounded-lg flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-xs text-brand-blue bg-brand-blue/15 px-3 py-1.5 rounded font-bold uppercase select-none">Backend &amp; DB</span>
+                <i data-lucide="database" class="w-5 h-5 text-brand-blue"></i>
+              </div>
+              <ul class="space-y-4 font-mono text-sm col">
+                <li class="flex items-start justify-between">
+                  <span class="font-semibold">Spring Boot / Hibernate</span>
+                  <span class="text-xs opacity-60 text-right">Enterprise microservices</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="font-semibold">PostgreSQL &amp; MySQL</span>
+                  <span class="text-xs opacity-60 text-right">Indexes, query analysis</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="font-semibold">Apache Kafka</span>
+                  <span class="text-xs opacity-60 text-right">Event-streaming, partitioning</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="font-semibold">Redis &amp; MongoDB</span>
+                  <span class="text-xs opacity-60 text-right">Caching pipelines, NoSQL</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3: Enterprise Systems & Architecting -->
+          <div class="portfolio-card p-8 rounded-lg flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-xs text-brand-blue bg-brand-blue/15 px-3 py-1.5 rounded font-bold uppercase select-none">Systems Design</span>
+                <i data-lucide="git-branch" class="w-5 h-5 text-brand-blue"></i>
+              </div>
+              <ul class="space-y-4 font-mono text-sm">
+                <li class="flex items-start justify-between">
+                  <span class="font-semibold">REST API Protocol</span>
+                  <span class="text-xs opacity-60 text-right">Structured, secure endpoint architectures</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="font-semibold">OOP / Concurrency</span>
+                  <span class="text-xs opacity-60 text-right">Thread safety, reactive modeling</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="font-semibold">Data Modeling</span>
+                  <span class="text-xs opacity-60 text-right">Optimal normalization, partitioning</span>
+                </li>
+                <li class="flex items-start justify-between">
+                  <span class="font-semibold">Production Incident Ops</span>
+                  <span class="text-xs opacity-60 text-right">Trace analytics, telemetry audit logs</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 4: Tools & Pipelines -->
+          <div class="portfolio-card p-8 rounded-lg flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-mono text-xs text-brand-blue bg-brand-blue/15 px-3 py-1.5 rounded font-bold uppercase select-none">Tools &amp; Ops</span>
+                <i data-lucide="cpu" class="w-5 h-5 text-brand-blue"></i>
+              </div>
+              <ul class="space-y-4 font-mono text-sm">
+                <li class="flex items-center justify-between">
+                  <span class="font-semibold">Git &amp; GitHub</span>
+                  <span class="text-xs opacity-60">Version control, branch protection</span>
+                </li>
+                <li class="flex items-center justify-between">
+                  <span class="font-semibold">GitHub Actions</span>
+                  <span class="text-xs opacity-60">Continuous deployment workflows</span>
+                </li>
+                <li class="flex items-center justify-between">
+                  <span class="font-semibold">Agile Methodology</span>
+                  <span class="text-xs opacity-60">Sprints, backlog modeling</span>
+                </li>
+                <li class="flex items-center justify-between">
+                  <span class="font-semibold">Maven / Gradle</span>
+                  <span class="text-xs opacity-60">Build automation structures</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- --- SECTION 03: EXPERIENCE METRICS (TELEMETRY / TIMELINE) --- -->
+      <section id="experience" class="py-24 border-t reveal" style="border-color: var(--border-color)">
+        <div class="flex items-center space-x-2.5 mb-6">
+          <span class="mono-box">03</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-brand-blue font-semibold">JOB_TELEMETRY_STREAM</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-12">THE TELEMETRY (JOURNAL)</h2>
+
+        <!-- Dotted Timeline Architecture (Square Node connectors matches sui.io) -->
+        <div class="relative pl-6 md:pl-12 border-l border-dashed border-gray-400/25 dark:border-gray-800/80 space-y-16 py-4">
+          
+          <!-- Node 1 -->
+          <div class="relative">
+            <!-- Node Marker -->
+            <span class="absolute -left-9 md:-left-15 top-1.5 timeline-dot"></span>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <!-- Sidebar Time Column -->
+              <div class="lg:col-span-3 font-mono text-xs text-gray-500 flex flex-col justify-between pt-1">
+                <div>
+                  <span class="text-brand-blue font-bold tracking-wide block text-sm">MAYNOOTH UNIVERSITY</span>
+                  <span class="block mt-1">Sep 2025 – Present</span>
+                </div>
+                <div class="mt-4 lg:mt-0 text-[10px] uppercase tracking-wider opacity-60">// DUBLIN, IRELAND</div>
+              </div>
+
+              <!-- Details Block -->
+              <div class="lg:col-span-9">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white flex flex-wrap items-center gap-2">
+                  <span>Teaching Assistant</span>
+                  <span class="font-mono text-xs bg-gray-500/10 text-gray-400 dark:text-gray-300 border border-gray-500/20 px-2 py-0.5 rounded">Part-Time Academic role</span>
+                </h3>
+                <ul class="mt-4 space-y-3.5 text-sm list-none pl-0" style="color: var(--subtitle-color)">
+                  <li class="relative pl-5">
+                    <span class="absolute left-0 top-1 text-xs text-brand-blue font-mono">&gt;</span>
+                    Supported student development cohorts on core backend fundamentals, query logic structured in <strong class="text-gray-950 dark:text-gray-200">SQL</strong>, and robust <strong class="text-gray-950 dark:text-gray-200">REST API</strong> designs, consistently driving project delivery metrics.
+                  </li>
+                  <li class="relative pl-5">
+                    <span class="absolute left-0 top-1 text-xs text-brand-blue font-mono">&gt;</span>
+                    Conducted code architecture and PR reviews for <strong class="text-gray-950 dark:text-gray-200">30+ multi-repository submissions</strong>, advising on production concepts such as indexing pipelines, secure routes, and unified entity schemas.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider line decoration -->
+          <div class="h-px border-t border-dashed" style="border-color: var(--border-color)"></div>
+
+          <!-- Node 2 -->
+          <div class="relative">
+            <!-- Node Marker -->
+            <span class="absolute -left-9 md:-left-15 top-1.5 timeline-dot"></span>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <!-- Sidebar Time Column -->
+              <div class="lg:col-span-3 font-mono text-xs text-gray-500 flex flex-col justify-between pt-1">
+                <div>
+                  <span class="text-brand-blue font-bold tracking-wide block text-sm">SOFTEL SOLUTIONS</span>
+                  <span class="block mt-1">Jan 2023 – Aug 2024</span>
+                </div>
+                <div class="mt-4 lg:mt-0 text-[10px] uppercase tracking-wider opacity-60">// ENTERPRISE LOGISTICS</div>
+              </div>
+
+              <!-- Details Block -->
+              <div class="lg:col-span-9">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white flex flex-wrap items-center gap-2">
+                  <span>Software Developer</span>
+                  <span class="font-mono text-xs bg-gray-500/10 text-gray-400 dark:text-gray-300 border border-gray-500/20 px-2 py-0.5 rounded">Full-Time Core Team</span>
+                </h3>
+                <ul class="mt-4 space-y-3.5 text-sm list-none pl-0" style="color: var(--subtitle-color)">
+                  <li class="relative pl-5">
+                    <span class="absolute left-0 top-1 text-xs text-brand-blue font-mono">&gt;</span>
+                    Engineered Java processing systems for high-volume municipal billing systems (calculating taxes, invoices, and reconciliation), successfully driving manual adjustments down by <span class="text-brand-blue font-bold font-mono">~30%</span>.
+                  </li>
+                  <li class="relative pl-5">
+                    <span class="absolute left-0 top-1 text-xs text-brand-blue font-mono">&gt;</span>
+                    Optimized relational database engines in <strong class="text-gray-950 dark:text-gray-200">PostgreSQL</strong> via structural indexing, transaction isolating, and restructuring high-cost nested queries, decreasing execution load times on transactional services by <span class="text-brand-blue font-bold font-mono">~40%</span>.
+                  </li>
+                  <li class="relative pl-5">
+                    <span class="absolute left-0 top-1 text-xs text-brand-blue font-mono">&gt;</span>
+                    Designed and scaled public API controllers for billing workflows, bringing down integration support resolution loops by <span class="text-brand-blue font-bold font-mono">~20%</span>.
+                  </li>
+                  <li class="relative pl-5">
+                    <span class="absolute left-0 top-1 text-xs text-brand-blue font-mono">&gt;</span>
+                    Conducted hotfixes for memory leaks and batch jobs during system cycles, trimming repeating production faults by <span class="text-brand-blue font-bold font-mono">~30%</span>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- --- SECTION 04: PROJECTS ARCHIVE (PROTOCOLS) --- -->
+      <section id="projects" class="py-24 border-t reveal" style="border-color: var(--border-color)">
+        <div class="flex items-center space-x-2.5 mb-6">
+          <span class="mono-box">04</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-brand-blue font-semibold">PRODUCTION_BUILDS</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-12">LIVE PROTOCOLS (ENGINEERING)</h2>
+
+        <!-- Cards Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <!-- Project 1 Dashboard Card -->
+          <div class="portfolio-card rounded-md flex flex-col justify-between overflow-hidden">
+            <!-- Header bar -->
+            <div class="flex items-center justify-between px-5 py-3 border-b bg-gray-900/30" style="border-color: var(--border-color)">
+              <div class="flex items-center space-x-2.5">
+                <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">BUILD_ID: 001 // WEB_AI</span>
+                <!-- Pulse badge -->
+                <a href="https://thoughttrace.vercel.app" target="_blank" rel="noreferrer" referrerPolicy="no-referrer" class="inline-flex items-center px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:scale-105 transition-all">
+                  <span class="w-1.5 h-1.5 mr-1 rounded-full bg-emerald-400 animate-pulse"></span>
+                  LIVE_PROMPT
+                </a>
+              </div>
+              <div class="flex items-center space-x-3 text-xs font-mono">
+                <a href="https://github.com/nitishjoshi00/thoughttrace" target="_blank" rel="noreferrer" referrerPolicy="no-referrer" class="text-gray-400 hover:text-brand-blue flex items-center space-x-1">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  <span>SRC</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Main Body -->
+            <div class="p-6 md:p-8 flex-grow">
+              <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <a href="https://thoughttrace.vercel.app" target="_blank" rel="noreferrer" referrerPolicy="no-referrer" class="hover:text-brand-blue transition-colors flex items-center justify-between text-gray-900 dark:text-white">
+                  <span>ThoughtTrace</span>
+                  <i data-lucide="external-link" class="w-4 h-4 ml-2 opacity-50"></i>
+                </a>
+              </h3>
+              <p class="font-mono text-xs text-brand-blue uppercase mt-1">AI-Powered DSA Reasoning Tracker</p>
+              
+              <p class="mt-6 text-sm leading-relaxed" style="color: var(--subtitle-color)">
+                A full-stack algorithmic problem tracker built for mapping and explaining complex DSA solutions using modern AI reasoning trees. The client layer consumes sanitized REST payloads without direct raw database integrations.
+              </p>
+
+              <!-- Interactive Simulator Accordion -->
+              <button onclick="toggleVisualFlow(1)" class="w-full mt-4 flex items-center justify-between text-[10px] font-mono border border-brand-blue/30 text-brand-blue hover:bg-brand-blue/10 rounded px-3 py-2 cursor-pointer transition-all select-none">
+                <span class="flex items-center"><i data-lucide="eye" class="w-3.5 h-3.5 mr-1.5 animate-pulse"></i> SIMULATE_DATA_FLOW</span>
+                <span id="flow-btn-txt-1">EXPAND_DIAGRAM [+]</span>
+              </button>
+              
+              <div id="visual-flow-1" class="hidden mt-4 overflow-hidden border border-brand-blue/20 rounded bg-black/60 font-mono text-[10px] p-4 transition-all">
+                <div class="text-[9px] text-gray-500 border-b border-brand-blue/10 pb-2 mb-3">// LIVE DIAGRAM: THOUGHTTRACE APIS</div>
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between bg-stone-900/60 p-2 rounded border border-white/5">
+                    <span class="text-gray-400">1. INPUT PORT</span>
+                    <span class="text-brand-blue">[REST POST Payload]</span>
+                    <span class="text-[9px] bg-brand-blue/10 text-brand-blue px-1.5 py-0.5 rounded">INIT_POST</span>
+                  </div>
+                  <div class="text-center text-brand-blue py-0.5">↓ <span class="text-[8px] text-gray-500">PROXIED VIA MIDDLEWARE</span></div>
+                  <div class="flex items-center justify-between bg-stone-900/60 p-2 rounded border border-white/5">
+                    <span class="text-gray-400">2. SAFETY WALLS</span>
+                    <span class="text-emerald-400">[CORS + Helmet Filters]</span>
+                    <span class="text-[9px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded">PASSED</span>
+                  </div>
+                  <div class="text-center text-brand-blue py-0.5">↓ <span class="text-[8px] text-gray-500">API BUCKETS VALIDAED</span></div>
+                  <div class="flex items-center justify-between bg-stone-900/60 p-2 rounded border border-white/5">
+                    <span class="text-gray-400">3. PROXY ABSTRACTION</span>
+                    <span class="text-yellow-400">[OpenAI-Compatible Map]</span>
+                    <span class="text-[9px] bg-yellow-500/10 text-yellow-400 px-1.5 py-0.5 rounded">SWAPPED</span>
+                  </div>
+                  <div class="text-center text-brand-blue py-0.5">↓ <span class="text-[8px] text-gray-500">DATABASE SYNC STATUS</span></div>
+                  <div class="flex items-center justify-between bg-stone-900/60 p-2 rounded border border-white/5">
+                    <span class="text-gray-400">4. DURABLE CACHE DB</span>
+                    <span class="text-purple-400">[Supabase PostgreSQL]</span>
+                    <span class="text-[9px] bg-purple-500/10 text-purple-400 px-1.5 py-0.5 rounded">COMMITTED</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Technical architectural list -->
+              <div class="mt-6 p-4 rounded bg-gray-950/40 border font-mono text-xs select-none" style="border-color: var(--border-color)">
+                <div class="text-[10px] text-gray-500 uppercase mb-3">// Architecture &amp; Safeguards</div>
+                <div class="space-y-2 text-gray-300">
+                  <div class="flex items-start">
+                    <span class="text-brand-blue mr-2">├─</span>
+                    <span><strong class="text-white">Boundary isolation:</strong> Node/Express core logic proxies calls to dynamic supabase nodes.</span>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-brand-blue mr-2">├─</span>
+                    <span><strong class="text-white">Provider Swapping:</strong> Coded to OpenAI-compatible abstractions. Switch model vectors in SECONDS.</span>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-brand-blue mr-2">└─</span>
+                    <span><strong class="text-white">Safeguards:</strong> Parameterized pools, Helmet filters, rate-limiting gates, CORS isolated limits.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Stack info -->
+            <div class="px-6 py-4 border-t bg-gray-900/15 flex flex-wrap gap-2 text-xs font-mono" style="border-color: var(--border-color)">
+              <span class="px-2 py-0.5 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">Vite React</span>
+              <span class="px-2 py-0.5 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">Node Express</span>
+              <span class="px-2 py-0.5 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">PostgreSQL</span>
+              <span class="px-2 py-0.5 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">OpenAI SDK</span>
+            </div>
+          </div>
+
+          <!-- Project 2 Dashboard Card -->
+          <div class="portfolio-card rounded-md flex flex-col justify-between overflow-hidden">
+            <!-- Header bar -->
+            <div class="flex items-center justify-between px-5 py-3 border-b bg-gray-900/30" style="border-color: var(--border-color)">
+              <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">BUILD_ID: 002 // CRITICAL_SYSTEM</span>
+              <div class="flex items-center space-x-3 text-xs font-mono">
+                <span class="text-gray-400 flex items-center space-x-1 select-none">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-blue"></i>
+                  <span>FAIL_PROOF</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Main Body -->
+            <div class="p-6 md:p-8 flex-grow">
+              <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Fault-Tolerant Notification Engine
+              </h3>
+              <p class="font-mono text-xs text-brand-blue uppercase mt-1">Multi-Channel Streaming System</p>
+              
+              <p class="mt-6 text-sm leading-relaxed" style="color: var(--subtitle-color)">
+                An event-driven pipeline delivering guaranteed core customer lifecycle events across Email, Push, and SMS queues, written for high transaction volume, zero-data-loss expectations.
+              </p>
+
+              <!-- Interactive Simulator Accordion -->
+              <button onclick="toggleVisualFlow(2)" class="w-full mt-4 flex items-center justify-between text-[10px] font-mono border border-brand-blue/30 text-brand-blue hover:bg-brand-blue/10 rounded px-3 py-2 cursor-pointer transition-all select-none">
+                <span class="flex items-center"><i data-lucide="refresh-cw" class="w-3.5 h-3.5 mr-1.5 animate-spin"></i> SIMULATE_FAILOVER_PIPELINE</span>
+                <span id="flow-btn-txt-2">EXPAND_DIAGRAM [+]</span>
+              </button>
+              
+              <div id="visual-flow-2" class="hidden mt-4 overflow-hidden border border-brand-blue/20 rounded bg-black/60 font-mono text-[10px] p-4 transition-all">
+                <div class="text-[9px] text-gray-500 border-b border-brand-blue/10 pb-2 mb-3">// LIVE DIAGRAM: EVENT-DRIVEN FAILOVER</div>
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between bg-stone-900/60 p-2 rounded border border-white/5">
+                    <span class="text-gray-400">1. KAFKA BROKER</span>
+                    <span class="text-brand-blue">[Input Offset Log]</span>
+                    <span class="text-[9px] bg-brand-blue/10 text-brand-blue px-1.5 py-0.5 rounded">CONSUME</span>
+                  </div>
+                  <div class="text-center text-brand-blue py-0.5">↓ <span class="text-[8px] text-gray-500">DEDUPLICATE CHECKSUM</span></div>
+                  <div class="flex items-center justify-between bg-stone-900/60 p-2 rounded border border-white/5">
+                    <span class="text-gray-400">2. TRACKING HASH</span>
+                    <span class="text-cyan-400">[Postgre SQL Cache Commit]</span>
+                    <span class="text-[9px] bg-cyan-500/10 text-cyan-400 px-1.5 py-0.5 rounded">UNIQUE: OK</span>
+                  </div>
+                  <div class="text-center text-brand-blue py-0.5">↓ <span class="text-[8px] text-gray-500">SERVICE HANDLER DISPATCH</span></div>
+                  <div class="flex items-center justify-between bg-stone-900/60 p-2 rounded border border-white/5">
+                    <span class="text-gray-400">3. CRASH RESPONSE</span>
+                    <span class="text-red-400">[Target HTTP Connection Down]</span>
+                    <span class="text-[9px] bg-red-500/15 text-red-400 px-1.5 py-0.5 rounded">FAIL: RETR_ING</span>
+                  </div>
+                  <div class="text-center text-brand-blue py-0.5">↓ <span class="text-[8px] text-gray-500">BACKOFF EXPONENTIAL REDIAL</span></div>
+                  <div class="flex items-center justify-between bg-stone-900/60 p-2 rounded border border-white/5">
+                    <span class="text-gray-400">4. DLQ ISO GATEWAY</span>
+                    <span class="text-emerald-400">[Dead Letter Queue Commit]</span>
+                    <span class="text-[9px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded">RECOVERED: OK</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Technical architectural list -->
+              <div class="mt-6 p-4 rounded bg-gray-950/40 border font-mono text-xs select-none" style="border-color: var(--border-color)">
+                <div class="text-[10px] text-gray-500 uppercase mb-3">// Reliability Protocols</div>
+                <div class="space-y-2 text-gray-300">
+                  <div class="flex items-start">
+                    <span class="text-brand-blue mr-2">├─</span>
+                    <span><strong class="text-white">At-Least-Once Guarantee:</strong> Custom consumer loop committing to Kafka offsets only after full verification.</span>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-brand-blue mr-2">├─</span>
+                    <span><strong class="text-white">Idempotency Filters:</strong> Deduplicates identical events on database tracking hashes.</span>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-brand-blue mr-2">└─</span>
+                    <span><strong class="text-white">Crash Isolation:</strong> Persisted states inside Postgres with dead-letter loops &amp; retry backoff.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Stack info -->
+            <div class="px-6 py-4 border-t bg-gray-900/15 flex flex-wrap gap-2 text-xs font-mono" style="border-color: var(--border-color)">
+              <span class="px-2 py-0.5 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">Java LTS</span>
+              <span class="px-2 py-0.5 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">Apache Kafka</span>
+              <span class="px-2 py-0.5 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">PostgreSQL</span>
+              <span class="px-2 py-0.5 bg-brand-blue/10 text-brand-blue rounded border border-brand-blue/20">Docker</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- --- SECTION 05: RECREATION MODULES (HUMOR / HOBBIES) --- -->
+      <section id="hobbies" class="py-24 border-t reveal" style="border-color: var(--border-color)">
+        <div class="flex items-center space-x-2.5 mb-6">
+          <span class="mono-box">05</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-brand-blue font-semibold">RECREATIONAL_THREAD</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">MINDSHARE &amp; HUMAN REBOOTS</h2>
+        <p class="mb-12 max-w-2xl text-sm leading-relaxed" style="color: var(--subtitle-color)">
+          Witty, technical sidebars tracking how I maintain system sanity when compiling is completed.
+        </p>
+
+        <!-- Dynamic Grid of 4 Jokes -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Joke 1 -->
+          <div class="portfolio-card p-6 rounded-md font-mono text-xs relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b pb-2" style="border-color: var(--border-color)">
+                <span class="text-brand-blue font-bold tracking-widest uppercase text-[10px]"># 01_anime</span>
+                <i data-lucide="tv" class="w-4 h-4 text-brand-blue"></i>
+              </div>
+              <p class="text-gray-300 leading-relaxed">
+                Watching complex subplots at 1.5x speed. Just like checking stack traces in my debug logs, I understand about 80% of what's going on until the plot twists with a runtime crash.
+              </p>
+            </div>
+            <div class="mt-4 text-[9px] text-gray-500 uppercase tracking-widest flex items-center">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mr-1.5"></span>
+              Cache status: HIT
+            </div>
+          </div>
+
+          <!-- Joke 2 -->
+          <div class="portfolio-card p-6 rounded-md font-mono text-xs relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b pb-2" style="border-color: var(--border-color)">
+                <span class="text-brand-blue font-bold tracking-widest uppercase text-[10px]"># 02_iron_ops</span>
+                <i data-lucide="dumbbell" class="w-4 h-4 text-brand-blue"></i>
+              </div>
+              <p class="text-gray-300 leading-relaxed">
+                Calculating macro stats down to the microgram. Operating a thread-safe calorie pipeline with zero deadlocks, though my lower quad-drivers are currently suffering from severe performance drops.
+              </p>
+            </div>
+            <div class="mt-4 text-[9px] text-gray-500 uppercase tracking-widest flex items-center">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mr-1.5"></span>
+              Thread count: MAX_CONCURRENCY
+            </div>
+          </div>
+
+          <!-- Joke 3 -->
+          <div class="portfolio-card p-6 rounded-md font-mono text-xs relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b pb-2" style="border-color: var(--border-color)">
+                <span class="text-brand-blue font-bold tracking-widest uppercase text-[10px]"># 03_liquid_fuel</span>
+                <i data-lucide="zap" class="w-4 h-4 text-brand-blue"></i>
+              </div>
+              <p class="text-gray-300 leading-relaxed">
+                Monster Energy. The official JRE (Juice Runtime Environment) operating system for my meatware. Translates chemical inputs directly into compiled, zero-bug bytecode.
+              </p>
+            </div>
+            <div class="mt-4 text-[9px] text-gray-500 uppercase tracking-widest flex items-center">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mr-1.5"></span>
+              Core: ULTRA_SPEED
+            </div>
+          </div>
+
+          <!-- Joke 4 -->
+          <div class="portfolio-card p-6 rounded-md font-mono text-xs relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b pb-2" style="border-color: var(--border-color)">
+                <span class="text-brand-blue font-bold tracking-widest uppercase text-[10px]"># 04_kitchen_comp</span>
+                <i data-lucide="beef" class="w-4 h-4 text-brand-blue"></i>
+              </div>
+              <p class="text-gray-300 leading-relaxed">
+                Assembling a hot meal from raw, unstable dependencies. If I omit a semicolon of dynamic salt tracking, the deployment fails, but at least there is zero chance of null-pointers inside a steak.
+              </p>
+            </div>
+            <div class="mt-4 text-[9px] text-gray-500 uppercase tracking-widest flex items-center">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mr-1.5"></span>
+              Compilation: CRITICAL_SUCCESS
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- --- SECTION 06: CONTACT / DIALOGUE --- -->
+      <section id="contact" class="py-24 border-t reveal" style="border-color: var(--border-color)">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <!-- Call To Action Side -->
+          <div class="lg:col-span-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center space-x-2.5 mb-6">
+                <span class="mono-box">06</span>
+                <span class="font-mono text-xs uppercase tracking-widest text-brand-blue font-semibold">DIALLING_INTERFACE</span>
+              </div>
+              <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">ESTABLISH CONNECTION</h2>
+              
+              <p class="text-sm md:text-base leading-relaxed mb-8" style="color: var(--subtitle-color)">
+                My channels are open. If you have an event pipeline to optimize, scale requirements to resolve, or are planning live integrations of generative models on JVM infrastructure, let's establish a fast protocol interface.
+              </p>
+
+              <!-- Connection Data Cards directly -->
+              <div class="space-y-4 font-mono text-xs">
+                
+                <!-- Email Click-to-Copy node -->
+                <div class="portfolio-card p-4 rounded flex items-center justify-between group cursor-pointer relative" onclick="copyValue('nitish.joshi.dev@gmail.com', 'email-feedback')">
+                  <div class="flex items-center space-x-3">
+                    <i data-lucide="mail" class="w-4 h-4 text-brand-blue"></i>
+                    <div>
+                      <span class="text-gray-500 block uppercase text-[9px]">// Core pipeline</span>
+                      <span class="text-white text-xs block break-all">nitish.joshi.dev@gmail.com</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-1 text-gray-500 group-hover:text-brand-blue transition-colors text-[10px]">
+                    <span id="email-feedback">CLICK_TO_COPY</span>
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  </div>
+                </div>
+
+                <!-- Phone node -->
+                <div class="portfolio-card p-4 rounded flex items-center justify-between group cursor-pointer relative" onclick="copyValue('+353894980613', 'phone-feedback')">
+                  <div class="flex items-center space-x-3">
+                    <i data-lucide="phone" class="w-4 h-4 text-brand-blue"></i>
+                    <div>
+                      <span class="text-gray-500 block uppercase text-[9px]">// Instant cellular</span>
+                      <span class="text-white text-xs block">+353 894 980 613</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-1 text-gray-500 group-hover:text-brand-blue transition-colors text-[10px]">
+                    <span id="phone-feedback">CLICK_TO_COPY</span>
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  </div>
+                </div>
+
+                <!-- Location node -->
+                <div class="portfolio-card p-4 rounded flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-brand-blue"></i>
+                    <div>
+                      <span class="text-gray-500 block uppercase text-[9px]">// Geo localization</span>
+                      <span class="text-white text-xs block">Dublin, Leinster, Ireland</span>
+                    </div>
+                  </div>
+                  <span class="text-[9px] text-[#22c55e] font-bold bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded tracking-widest uppercase">ACTIVE</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Social links -->
+            <div class="flex gap-4 mt-8 font-mono text-xs">
+              <a href="https://github.com/nitishjoshi00" target="_blank" rel="noreferrer" referrerPolicy="no-referrer" class="portfolio-card px-4 py-2.5 rounded hover:text-brand-blue hover:border-brand-blue/30 flex items-center space-x-1.5">
+                <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                <span>GITHUB_REPO</span>
+              </a>
+              <a href="https://linkedin.com/in/nitishjoshi00" target="_blank" rel="noreferrer" referrerPolicy="no-referrer" class="portfolio-card px-4 py-2.5 rounded hover:text-brand-blue hover:border-brand-blue/30 flex items-center space-x-1.5">
+                <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+                <span>LINKEDIN_SYS</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Professional Interactive Form Interface -->
+          <div class="lg:col-span-7">
+            <div class="portfolio-card p-6 md:p-8 rounded-lg relative overflow-hidden">
+              <div class="absolute top-2 right-2 flex space-x-1">
+                <span class="w-2 h-2 rounded-full bg-gray-500/20"></span>
+                <span class="w-2 h-2 rounded-full bg-gray-500/20"></span>
+              </div>
+              
+              <h3 class="text-lg font-mono font-bold tracking-tight text-white mb-6 border-b pb-3 flex items-center justify-between" style="border-color: var(--border-color)">
+                <span>&gt;_ SEND_ENVELOPE.sh</span>
+                <span class="text-[10px] text-gray-500 font-normal">SECURE_CHANNEL // TLS_1.3</span>
+              </h3>
+
+              <!-- Simple submission with dynamic validation -->
+              <form id="contact-form" class="space-y-6 font-mono text-xs" onsubmit="handleFormSubmit(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- Name -->
+                  <div>
+                    <label class="block uppercase text-gray-400 tracking-wider mb-2 font-semibold">Issuer Identity (Name) *</label>
+                    <input type="text" id="form-name" required class="w-full px-4 py-3.5 rounded border bg-transparent text-sm text-gray-200 outline-none focus:border-brand-blue transition-all" style="border-color: var(--border-color)" placeholder="e.g. Linus Torvalds" />
+                  </div>
+                  <!-- Email -->
+                  <div>
+                    <label class="block uppercase text-gray-400 tracking-wider mb-2 font-semibold">Reply Address (Email) *</label>
+                    <input type="email" id="form-email" required class="w-full px-4 py-3.5 rounded border bg-transparent text-sm text-gray-200 outline-none focus:border-brand-blue transition-all" style="border-color: var(--border-color)" placeholder="e.g. linus@kernel.org" />
+                  </div>
+                </div>
+
+                <!-- Subject -->
+                <div>
+                  <label class="block uppercase text-gray-400 tracking-wider mb-2 font-semibold">Topic Stream (Subject)</label>
+                  <input type="text" id="form-subject" class="w-full px-4 py-3.5 rounded border bg-transparent text-sm text-gray-200 outline-none focus:border-brand-blue transition-all" style="border-color: var(--border-color)" placeholder="e.g. Architect Optimization project / Collaboration proposal" />
+                </div>
+
+                <!-- Body -->
+                <div>
+                  <label class="block uppercase text-gray-400 tracking-wider mb-2 font-semibold">Payload Content (Message) *</label>
+                  <textarea id="form-message" required rows="5" class="w-full px-4 py-3.5 rounded border bg-transparent text-sm text-gray-200 outline-none focus:border-brand-blue transition-all resize-none scrollbar-thin" style="border-color: var(--border-color)" placeholder="/* Write your code questions, pipeline telemetry demands, or architectural queries here. */"></textarea>
+                </div>
+
+                <!-- Success State notification -->
+                <div id="form-success-box" class="hidden p-4 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs">
+                  <span class="font-bold flex items-center tracking-wide font-mono">
+                    <i data-lucide="check-circle" class="mr-2 w-4 h-4"></i>
+                    SUCCESS: TRANSMISSION_RECEIVED. Payload loaded successfully into Nitish's thread loop.
+                  </span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="form-submit-btn" class="w-full bg-brand-blue hover:bg-brand-bluehover text-black py-4 px-6 rounded font-bold uppercase transition-all shadow-md select-none cursor-pointer flex items-center justify-center space-x-2">
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  <span>FLUSH_BUFFER_AND_TRANSMIT</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- --- SECTION 07: TERMINAL TREE FOOTER --- -->
+      <footer class="py-12 border-t font-mono text-xs" style="border-color: var(--border-color)">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          
+          <!-- Box-drawing code configuration visualization (As explicitly requested) -->
+          <div class="overflow-x-auto p-4 md:p-6 rounded-lg bg-black/60 border select-none scrollbar-thin" style="border-color: var(--border-color)">
+            <p class="text-gray-500 text-[10px] uppercase mb-4 tracking-wider">// SYSTEM_DIRECTORY_HIERARCHY</p>
+            <pre class="text-[#4d9fff] font-mono leading-relaxed select-all whitespace-pre">
+nitish-joshi-portfolio/ [active]
+├── 01_identity/
+│   ├── name.sh <span class="text-white">-&gt; Nitish Joshi</span>
+│   ├── position.bin <span class="text-white">-&gt; Java Backend + Live AI</span>
+│   └── location.conf <span class="text-white">-&gt; Dublin, Leinster, Ireland</span>
+├── 02_skills/
+│   ├── java_concurrency.jar <span class="text-white">-&gt; Mastered</span>
+│   ├── event_streams_kafka <span class="text-white">-&gt; Partitioned Core</span>
+│   └── generative_orchestrator.py <span class="text-white">-&gt; Live SDK</span>
+├── 03_connect/
+│   ├── email <span class="text-white">-&gt; nitish.joshi.dev@gmail.com</span>
+│   ├── github.com/nitishjoshi00
+│   └── linkedin.com/in/nitishjoshi00
+└── footer.log <span class="text-[#22c55e]">&quot;System stabilized. Zero warnings (2026)&quot;</span></pre>
+          </div>
+
+          <!-- Bottom bar tags & copyright -->
+          <div class="flex flex-col justify-between h-full py-2 space-y-4 md:space-y-0 text-gray-500 text-right md:items-end">
+            <div class="flex space-x-4">
+              <a href="#about" class="hover:text-brand-blue transition-colors">ROOT</a>
+              <span>/</span>
+              <a href="#experience" class="hover:text-brand-blue transition-colors">TELEMETRY</a>
+              <span>/</span>
+              <a href="#projects" class="hover:text-brand-blue transition-colors">BUILDS</a>
+            </div>
+            
+            <p class="text-[10px] leading-relaxed">
+              &copy; 2026 Nitish Joshi. Handcrafted with semantic typography, precision variables, and absolute execution limits. Dublin, Ireland.
+            </p>
+          </div>
+
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- --- INTERACTIVE PORTFOLIO RESUME VIEW MODAL --- -->
+    <div id="resume-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+      <!-- Modal Canvas Wrapper -->
+      <div class="portfolio-card w-full max-w-4xl bg-stone-950 rounded-lg shadow-2xl relative overflow-hidden flex flex-col max-h-[90vh]" style="border-color: var(--border-color)">
+        
+        <!-- Header Bar -->
+        <div class="flex items-center justify-between px-5 py-4 border-b bg-stone-900" style="border-color: var(--border-color)">
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3 h-3 rounded-full bg-red-500 inline-block cursor-pointer hover:scale-110 transition-all" onclick="closeResumeModal()"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+            </div>
+            <span class="font-mono text-xs text-stone-300 ml-3 flex items-center select-none">
+              <i data-lucide="file-text" class="w-3.5 h-3.5 mr-1.5 text-brand-blue"></i> nitish_joshi_cv.pdf
+            </span>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex items-center space-x-2 font-mono text-[11px]">
+            <button onclick="triggerPrintCV()" class="bg-brand-blue hover:bg-brand-bluehover text-black font-bold px-3 py-1.5 rounded flex items-center space-x-1 cursor-pointer transition-all shadow-[0_0_8px_var(--accent-glow)] select-none">
+              <i data-lucide="printer" class="w-3.5 h-3.5 text-black"></i>
+              <span class="hidden sm:inline">PRINT_SAVE_PDF</span>
+            </button>
+            <button onclick="copyPlainResumeText()" class="portfolio-card hover:bg-white/5 text-stone-300 font-medium px-3 py-1.5 rounded border flex items-center space-x-1 cursor-pointer transition-all select-none" style="border-color: var(--border-color)">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span class="hidden sm:inline" id="copy-cv-btn-txt">COPY_PLAIN</span>
+            </button>
+            <button onclick="closeResumeModal()" class="text-stone-400 hover:text-white px-2 py-1.5 cursor-pointer">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Document viewer -->
+        <div class="flex-grow overflow-y-auto p-6 md:p-12 bg-white text-stone-950 font-sans tracking-normal select-text scrollbar-thin">
+          <div class="max-w-2xl mx-auto" id="resume-text-payload">
+            <!-- Header elements -->
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start border-b border-stone-300 pb-6 mb-6">
+              <div>
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-stone-900 leading-none mb-2 select-text font-sans">NITISH JOSHI</h1>
+                <p class="text-stone-600 font-mono text-xs uppercase tracking-wider font-semibold">Senior Java Backend &amp; Generative AI Engineer</p>
+              </div>
+              <div class="mt-4 md:mt-0 text-left md:text-right text-xs text-stone-600 font-mono space-y-1">
+                <p class="flex items-center md:justify-end"><i data-lucide="phone" class="w-3 h-3 mr-1.5 opacity-60 text-stone-500"></i> +353 894 980 613</p>
+                <p class="flex items-center md:justify-end"><i data-lucide="map-pin" class="w-3 h-3 mr-1.5 opacity-60 text-stone-500"></i> Dublin, Ireland</p>
+                <p class="flex items-center md:justify-end"><i data-lucide="mail" class="w-3 h-3 mr-1.5 opacity-60 text-stone-500"></i> nitish.joshi.dev@gmail.com</p>
+                <p class="flex items-center md:justify-end gap-1.5 mt-1.5 text-stone-500">
+                  <a href="https://linkedin.com/in/nitishjoshi00" target="_blank" class="text-blue-700 hover:underline">LinkedIn</a> |
+                  <a href="https://github.com/nitishjoshi00" target="_blank" class="text-blue-700 hover:underline">Github</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Profile Summary section -->
+            <section class="mb-6">
+              <h2 class="text-xs uppercase font-mono tracking-widest text-stone-500 font-bold border-b border-stone-300 pb-1.5 mb-3">PROFESSIONAL SUMMARY</h2>
+              <p class="text-sm text-stone-700 leading-relaxed justify-inter">
+                Java backend developer with around 2 years of experience building production REST APIs, billing and workflow systems, and event-driven services with Spring Boot and Kafka. Designed and deployed a live full-stack AI application integrating LLMs through a provider-agnostic interface, combining hands-on AI integration with a strong backend foundation in SQL optimisation, fault tolerance, and production support.
+              </p>
+            </section>
+
+            <!-- Skills block -->
+            <section class="mb-6">
+              <h2 class="text-xs uppercase font-mono tracking-widest text-stone-500 font-bold border-b border-stone-300 pb-1.5 mb-3">TECHNICAL SKILLS</h2>
+              <ul class="text-sm text-stone-700 space-y-3 font-mono text-xs">
+                <li><strong class="text-stone-900 font-sans text-sm block mb-0.5">Languages:</strong> Java, SQL, Python, JavaScript</li>
+                <li><strong class="text-stone-900 font-sans text-sm block mb-0.5">Backend &amp; Databases:</strong> Spring Boot, JPA/Hibernate, PostgreSQL, MySQL, MongoDB, Apache Kafka, Redis</li>
+                <li><strong class="text-stone-900 font-sans text-sm block mb-0.5">Systems &amp; Concepts:</strong> REST API Design, Object-Oriented Design, Data Modeling, Transactions &amp; Concurrency, Backend Debugging &amp; Production Support</li>
+                <li><strong class="text-stone-900 font-sans text-sm block mb-0.5">Tools &amp; Practices:</strong> Git, Agile/Scrum</li>
+              </ul>
+            </section>
+
+            <!-- Working experience section -->
+            <section class="mb-6">
+              <h2 class="text-xs uppercase font-mono tracking-widest text-stone-500 font-bold border-b border-stone-300 pb-1.5 mb-3">WORK EXPERIENCE</h2>
+              
+              <!-- Softel Solutions -->
+              <div class="mb-5">
+                <div class="flex justify-between items-start text-sm font-semibold text-stone-900">
+                  <h3 class="font-bold">
+                    <span class="font-bold">Software Developer</span> 
+                    <span class="text-stone-500 font-normal">, Softel Solutions</span>
+                  </h3>
+                  <span class="text-xs font-mono text-stone-500 font-normal">Jan 2023 – Aug 2024</span>
+                </div>
+                <ul class="mt-2 text-xs md:text-sm text-stone-700 list-disc list-outside pl-4 space-y-1.5">
+                  <li>Developed and maintained Java-based backend business logic for municipal billing workflows, including tax calculation, invoice generation, and payment reconciliation, reducing manual billing corrections by ~30%.</li>
+                  <li>Analysed inefficient database access patterns and optimised SQL queries through indexing and join restructuring, cutting response times on high-traffic billing queries by ~40%.</li>
+                  <li>Designed and extended REST APIs supporting billing and user-record workflows, diagnosing backend failures and data inconsistencies to reduce average issue resolution time by ~20%.</li>
+                  <li>Investigated recurring production defects across application logic and database layers, deploying validated fixes including batch data corrections that reduced repeat production incidents by ~30%.</li>
+                </ul>
+              </div>
+
+              <!-- Teaching Assistant -->
+              <div class="mb-4">
+                <div class="flex justify-between items-start text-sm font-semibold text-stone-900">
+                  <h3 class="font-bold">
+                    <span class="font-bold">Teaching Assistant</span> 
+                    <span class="text-stone-500 font-normal">, Maynooth University</span>
+                  </h3>
+                  <span class="text-xs font-mono text-stone-500 font-normal">Sep 2025 – Present</span>
+                </div>
+                <ul class="mt-2 text-xs md:text-sm text-stone-700 list-disc list-outside pl-4 space-y-1.5">
+                  <li>Supported student teams on backend fundamentals, SQL querying, and REST API structuring, contributing to consistent on-time project delivery.</li>
+                  <li>Reviewed 30+ code submissions and pull requests, providing feedback on API design and database modeling to reduce recurring implementation issues.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="mb-6">
+              <h2 class="text-xs uppercase font-mono tracking-widest text-stone-500 font-bold border-b border-stone-300 pb-1.5 mb-3">KEY PROJECTS</h2>
+              
+              <!-- Fault-Tolerant notification system -->
+              <div class="mb-5">
+                <h3 class="text-sm font-bold text-stone-900 mb-1">Fault-Tolerant Notification System (Email / SMS / Push)</h3>
+                <ul class="text-xs md:text-sm text-stone-700 list-disc list-outside pl-4 space-y-1.5">
+                  <li>Built an event-driven notification system using Apache Kafka to asynchronously deliver email, SMS, and push notifications with high throughput and fault tolerance.</li>
+                  <li>Implemented at-least-once delivery semantics with application-level idempotency, retry handling with exponential backoff, and Dead Letter Queue isolation to prevent message loss and duplicate notifications.</li>
+                  <li>Persisted delivery state in PostgreSQL to ensure correctness across retries, consumer crashes, and Kafka consumer group rebalancing.</li>
+                </ul>
+              </div>
+
+              <!-- ThoughtTrace -->
+              <div class="mb-4">
+                <h3 class="text-sm font-bold text-stone-900 mb-1">
+                  <span>ThoughtTrace – AI-Powered DSA Reasoning Tracker</span>
+                </h3>
+                <ul class="text-xs md:text-sm text-stone-700 list-disc list-outside pl-4 space-y-1.5">
+                  <li>Built and deployed a full-stack AI application with a React (Vite) frontend on Vercel and a Node.js/Express REST API on Render backed by PostgreSQL (Supabase), with the frontend consuming the backend over JSON and zero direct DB access.</li>
+                  <li>Engineered the AI layer against an OpenAI-compatible interface so swapping LLM providers (OpenRouter to NVIDIA NIM) was a config-only change, avoiding vendor lock-in.</li>
+                  <li>Secured and stabilised the API with parameterised queries (SQL-injection safe), Helmet headers, IP rate limiting, connection pooling, and try/catch error handling that returns sanitised 400/500s without leaking internals.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Education -->
+            <section class="mb-4">
+              <h2 class="text-xs uppercase font-mono tracking-widest text-stone-500 font-bold border-b border-stone-300 pb-1.5 mb-3">EDUCATION</h2>
+              <div class="space-y-3 text-sm text-stone-700">
+                <div class="flex justify-between">
+                  <div>
+                    <strong class="text-stone-900 block font-bold">Maynooth University, Ireland</strong>
+                    <span class="text-stone-600 block text-xs">MSc Software Engineering (2:1 classification)</span>
+                  </div>
+                  <span class="font-mono text-xs text-stone-500">2024 – 2025</span>
+                </div>
+                <div class="flex justify-between">
+                  <div>
+                    <strong class="text-stone-900 block font-bold">MRSPTU, India</strong>
+                    <span class="text-stone-600 block text-xs">B.E. Computer Science</span>
+                  </div>
+                  <span class="font-mono text-xs text-stone-500">2019 – 2023</span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Sticky Footer bar -->
+        <div class="px-5 py-3.5 border-t bg-stone-900 text-stone-400 font-mono text-[9px] uppercase tracking-wider flex items-center justify-between" style="border-color: var(--border-color)">
+          <span>COMPLIANCE_STATUS: VERIFIED_DUBLIN_LEINSTER</span>
+          <span>A4_PAGE_SIZE // PRINT_READY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- --- DYNAMIC STANDARD PRINT READY CONTAINER --- -->
+    <div class="print-ready-resume">
+      <!-- Full resume duplicated exactly here. Because of standard print stylesheets configured above, 
+           whenever print is requested via window.print(), the entire UI dissolves and ONLY this pristine layout is outputted! -->
+      <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 100%; color: #0d0d0c; background: #ffffff;">
+        <div style="border-bottom: 2px solid #1a1a1a; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h1 style="font-size: 26pt; font-weight: 800; margin: 0 0 4px 0; color: #000000; letter-spacing: -0.02em;">NITISH JOSHI</h1>
+            <p style="font-size: 10pt; font-family: monospace; text-transform: uppercase; margin: 0; color: #555555; font-weight: bold;">Senior Java Backend &amp; Generative AI Engineer</p>
+          </div>
+          <div style="font-size: 8.5pt; font-family: monospace; text-align: right; line-height: 1.3; color: #444444;">
+            <div>+353 894 980 613 | Dublin, Ireland</div>
+            <div>nitish.joshi.dev@gmail.com</div>
+            <div>linkedin.com/in/nitishjoshi00 | github.com/nitishjoshi00</div>
+          </div>
+        </div>
+
+        <section style="margin-bottom: 18px;">
+          <h2 style="font-size: 9pt; font-family: monospace; text-transform: uppercase; margin: 0 0 6px 0; border-bottom: 1px solid #cccccc; padding-bottom: 3px; font-weight: bold; color: #444444; letter-spacing: 0.1em;">PROFESSIONAL SUMMARY</h2>
+          <p style="font-size: 9.5pt; margin: 0; line-height: 1.45; text-align: justify; color: #222222;">
+            Java backend developer with around 2 years of experience building production REST APIs, billing and workflow systems, and event-driven services with Spring Boot and Kafka. Designed and deployed a live full-stack AI application integrating LLMs through a provider-agnostic interface, combining hands-on AI integration with a strong backend foundation in SQL optimisation, fault tolerance, and production support.
+          </p>
+        </section>
+
+        <section style="margin-bottom: 18px;">
+          <h2 style="font-size: 9pt; font-family: monospace; text-transform: uppercase; margin: 0 0 6px 0; border-bottom: 1px solid #cccccc; padding-bottom: 3px; font-weight: bold; color: #444444; letter-spacing: 0.1em;">TECHNICAL SKILLS</h2>
+          <div style="font-size: 9.5pt; line-height: 1.4; color: #222222;">
+            <div style="margin-bottom: 4px;"><strong style="color: #000000;">Languages:</strong> Java, SQL, Python, JavaScript</div>
+            <div style="margin-bottom: 4px;"><strong style="color: #000000;">Backend &amp; Databases:</strong> Spring Boot, JPA/Hibernate, PostgreSQL, MySQL, MongoDB, Apache Kafka, Redis</div>
+            <div style="margin-bottom: 4px;"><strong style="color: #000000;">Systems &amp; Concepts:</strong> REST API Design, Object-Oriented Design, Data Modeling, Transactions &amp; Concurrency, Backend Debugging &amp; Production Support</div>
+            <div><strong style="color: #000000;">Tools &amp; Practices:</strong> Git, Agile/Scrum</div>
+          </div>
+        </section>
+
+        <section style="margin-bottom: 18px;">
+          <h2 style="font-size: 9pt; font-family: monospace; text-transform: uppercase; margin: 0 0 8px 0; border-bottom: 1px solid #cccccc; padding-bottom: 3px; font-weight: bold; color: #444444; letter-spacing: 0.1em;">WORK EXPERIENCE</h2>
+          
+          <div style="margin-bottom: 12px;">
+            <div style="display: flex; justify-content: space-between; font-size: 9.5pt; font-weight: bold; color: #000000; margin-bottom: 3px;">
+              <div>Software Developer <span style="font-weight: normal; color: #555555;">— Softel Solutions</span></div>
+              <div style="font-family: monospace; font-size: 8.5pt; font-weight: normal; color: #444444;">Jan 2023 – Aug 2024</div>
+            </div>
+            <ul style="margin: 0; padding-left: 15px; font-size: 9.2pt; line-height: 1.4; color: #222222;">
+              <li style="margin-bottom: 3px;">Developed and maintained Java-based backend business logic for municipal billing workflows, including tax calculation, invoice generation, and payment reconciliation, reducing manual billing corrections by ~30%.</li>
+              <li style="margin-bottom: 3px;">Analysed inefficient database access patterns and optimised SQL queries through indexing and join restructuring, cutting response times on high-traffic billing queries by ~40%.</li>
+              <li style="margin-bottom: 3px;">Designed and extended REST APIs supporting billing and user-record workflows, diagnosing backend failures and data inconsistencies to reduce average issue resolution time by ~20%.</li>
+              <li style="margin-bottom: 3px;">Investigated recurring production defects across application logic and database layers, deploying validated fixes including batch data corrections that reduced repeat production incidents by ~30%.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 9.5pt; font-weight: bold; color: #000000; margin-bottom: 3px;">
+              <div>Teaching Assistant <span style="font-weight: normal; color: #555555;">— Maynooth University</span></div>
+              <div style="font-family: monospace; font-size: 8.5pt; font-weight: normal; color: #444444;">Sep 2025 – Present</div>
+            </div>
+            <ul style="margin: 0; padding-left: 15px; font-size: 9.2pt; line-height: 1.4; color: #222222;">
+              <li style="margin-bottom: 3px;">Supported student teams on backend fundamentals, SQL querying, and REST API structuring, contributing to consistent on-time project delivery.</li>
+              <li>Reviewed 30+ code submissions and pull requests, providing feedback on API design and database modeling to reduce recurring implementation issues.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section style="margin-bottom: 18px;">
+          <h2 style="font-size: 9pt; font-family: monospace; text-transform: uppercase; margin: 0 0 8px 0; border-bottom: 1px solid #cccccc; padding-bottom: 3px; font-weight: bold; color: #444444; letter-spacing: 0.1em;">KEY PROJECTS</h2>
+          
+          <div style="margin-bottom: 10px;">
+            <div style="font-size: 9.5pt; font-weight: bold; color: #000000; margin-bottom: 2px;">Fault-Tolerant Notification System (Email / SMS / Push)</div>
+            <ul style="margin: 0; padding-left: 15px; font-size: 9.2pt; line-height: 1.4; color: #222222;">
+              <li style="margin-bottom: 2px;">Built an event-driven notification system using Apache Kafka to asynchronously deliver email, SMS, and push notifications with high throughput and fault tolerance.</li>
+              <li style="margin-bottom: 2px;">Implemented at-least-once delivery semantics with application-level idempotency, retry handling with exponential backoff, and Dead Letter Queue isolation to prevent message loss and duplicate notifications.</li>
+              <li>Persisted delivery state in PostgreSQL to ensure correctness across retries, consumer crashes, and Kafka consumer group rebalancing.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="font-size: 9.5pt; font-weight: bold; color: #000000; margin-bottom: 2px;">ThoughtTrace – AI-Powered DSA Reasoning Tracker</div>
+            <ul style="margin: 0; padding-left: 15px; font-size: 9.2pt; line-height: 1.4; color: #222222;">
+              <li style="margin-bottom: 2px;">Built and deployed a full-stack AI application with a React (Vite) frontend on Vercel and a Node.js/Express REST API on Render backed by PostgreSQL (Supabase), with the frontend consuming the backend over JSON and zero direct DB access.</li>
+              <li style="margin-bottom: 2px;">Engineered the AI layer against an OpenAI-compatible interface so swapping LLM providers (OpenRouter to NVIDIA NIM) was a config-only change, avoiding vendor lock-in.</li>
+              <li>Secured and stabilised the API with parameterised queries (SQL-injection safe), Helmet headers, IP rate limiting, connection pooling, and try/catch error handling that returns sanitised 400/500s without leaking internals.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="font-size: 9pt; font-family: monospace; text-transform: uppercase; margin: 0 0 6px 0; border-bottom: 1px solid #cccccc; padding-bottom: 3px; font-weight: bold; color: #444444; letter-spacing: 0.1em;">EDUCATION</h2>
+          <div style="font-size: 9.5pt; color: #222222;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+              <div><strong style="color: #000000;">Maynooth University, Ireland</strong> — MSc Software Engineering (2:1 classification)</div>
+              <div style="font-family: monospace; font-size: 8.5pt; color: #444444;">2024 – 2025</div>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <div><strong style="color: #000000;">MRSPTU, India</strong> — B.E. Computer Science</div>
+              <div style="font-family: monospace; font-size: 8.5pt; color: #444444;">2019 – 2023</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Theme Toast Container (Syntax-highlighted code output as requested) -->
+    <div id="theme-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-500 ease-out max-w-sm w-full portfolio-card rounded-md font-mono overflow-hidden shadow-2xl scale-95 pointer-events-none">
+      <!-- Toast header bar -->
+      <div class="flex items-center justify-between px-4 py-2.5 border-b bg-black/40" style="border-color: var(--border-color)">
+        <div class="flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
+        </div>
+        <span class="text-[10px] text-gray-400 select-none uppercase tracking-widest font-bold">theme_orchestrator.sh</span>
+        <span class="w-4"></span>
+      </div>
+      <!-- Code box syntax rendering -->
+      <div class="p-4 bg-black text-xs leading-relaxed text-left whitespace-pre overflow-x-auto scrollbar-thin border-t border-white/5">
+        <code id="toast-code"></code>
+      </div>
+    </div>
+
+    <!-- --- CORE INTERACTIVE SCRIPT SYSTEM --- -->
+    <script>
+      // --- Dynamic Code Templates for Theme Switch Toast ---
+      const darkCode = 
+`<span class="text-[#ff79c6]">if</span> (<span class="text-[#50fa7b]">theme</span> === <span class="text-[#f1fa8c]">"dark"</span>) {
+  <span class="text-[#ff79c6]">return</span> <span class="text-[#50fa7b]">render</span>(<span class="text-[#f1fa8c]">"Welcome to the dark side"</span>);
+}`;
+
+      const lightCode = 
+`<span class="text-[#ff79c6]">if</span> (<span class="text-[#50fa7b]">theme</span> === <span class="text-[#f1fa8c]">"light"</span>) {
+  <span class="text-[#ff79c6]">return</span> <span class="text-[#50fa7b]">render</span>(<span class="text-[#f1fa8c]">"Let there be light"</span>);
+}`;
+
+      // --- Theme Switcher Logic ---
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const themeToast = document.getElementById('theme-toast');
+      const toastCode = document.getElementById('toast-code');
+      let toastTimeout;
+
+      function setTheme(isLight, initial = false) {
+        if (isLight) {
+          document.documentElement.classList.add('light');
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          if (!initial) showThemeToast('light');
+        } else {
+          document.documentElement.classList.remove('light');
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          if (!initial) showThemeToast('dark');
+        }
+      }
+
+      // Read preference on load
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      // Default dark rule applies if nothing set, otherwise follow setting
+      const isInitialLight = savedTheme === 'light' || (!savedTheme && systemPrefersLight);
+      
+      setTheme(isInitialLight, true);
+
+      themeToggleBtn.addEventListener('click', () => {
+        const isCurrentlyLight = document.documentElement.classList.contains('light');
+        setTheme(!isCurrentlyLight);
+      });
+
+      function showThemeToast(themeName) {
+        clearTimeout(toastTimeout);
+        
+        if (themeName === 'dark') {
+          toastCode.innerHTML = darkCode;
+        } else {
+          toastCode.innerHTML = lightCode;
+        }
+
+        // Animation Entrance
+        themeToast.classList.remove('translate-y-24', 'opacity-0', 'scale-95');
+        themeToast.classList.add('translate-y-0', 'opacity-100', 'scale-100');
+
+        // Graceful exit timeout
+        toastTimeout = setTimeout(() => {
+          themeToast.classList.remove('translate-y-0', 'opacity-100', 'scale-100');
+          themeToast.classList.add('translate-y-24', 'opacity-0', 'scale-95');
+        }, 4000);
+      }
+
+      // --- Dynamic Text Typing Loop ---
+      const phrases = [
+        "java backend developer",
+        "spring boot · kafka · postgres",
+        "i ship live AI systems"
+      ];
+      let currentPhraseIndex = 0;
+      let currentText = "";
+      let isDeleting = false;
+      let charIndex = 0;
+      const typingElement = document.getElementById("typing-text");
+
+      function executeTypingLoop() {
+        const fullPhrase = phrases[currentPhraseIndex];
+
+        if (isDeleting) {
+          currentText = fullPhrase.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          currentText = fullPhrase.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        typingElement.textContent = currentText;
+
+        let typingSpeed = 70; // natural fluid speed
+        if (isDeleting) {
+          typingSpeed = 35; // faster deletion
+        }
+
+        if (!isDeleting && currentText === fullPhrase) {
+          typingSpeed = 2200; // sustain full message longer
+          isDeleting = true;
+        } else if (isDeleting && currentText === "") {
+          isDeleting = false;
+          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+          typingSpeed = 400; // pause before next message
+        }
+
+        setTimeout(executeTypingLoop, typingSpeed);
+      }
+
+      // --- Interactive Resume Modal System ---
+      function openResumeModal() {
+        const modal = document.getElementById('resume-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden'; // Lock background scrolling
+      }
+
+      function closeResumeModal() {
+        const modal = document.getElementById('resume-modal');
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Restore background scrolling
+      }
+
+      function triggerPrintCV() {
+        window.print();
+      }
+
+      function copyPlainResumeText() {
+        const rawPayload = `
+NITISH JOSHI — Senior Java Backend Developer & Generative AI Engineer
+Dublin, Ireland | +353 894 980 613 | nitish.joshi.dev@gmail.com
+GitHub: github.com/nitishjoshi00 | LinkedIn: linkedin.com/in/nitishjoshi00
+
+PROFESSIONAL SUMMARY:
+Java backend developer with around 2 years of experience building production REST APIs, billing and workflow systems, and event-driven services with Spring Boot and Kafka. Designed and deployed a live full-stack AI application integrating LLMs through a provider-agnostic interface, combining hands-on AI integration with a strong backend foundation in SQL optimisation, fault tolerance, and production support.
+
+TECHNICAL SKILLS:
+- Languages: Java, SQL, Python, JavaScript
+- Backend & Databases: Spring Boot, JPA/Hibernate, PostgreSQL, MySQL, MongoDB, Apache Kafka, Redis
+- Systems & Concepts: REST API Design, Object-Oriented Design, Data Modeling, Transactions & Concurrency, Backend Debugging & Production Support
+- Tools: Git, Agile/Scrum
+
+WORK EXPERIENCE:
+1. Software Developer, Softel Solutions (Jan 2023 – Aug 2024)
+- Developed and maintained Java-based backend business logic for municipal billing workflows, including tax calculation, invoice generation, and payment reconciliation, reducing manual billing corrections by ~30%.
+- Analysed database access patterns and optimised SQL queries through indexing and join restructuring, cutting response times on high-traffic queries by ~40%.
+- Designed and extended REST APIs supporting billing and user workflows, diagnostics reduced issue resolution time by ~20%.
+- Resolved production defects across application logic and database layers, deploying batch data corrections that reduced repeating errors by ~30%.
+
+2. Teaching Assistant, Maynooth University (Sep 2025 – Present)
+- Guided student teams on backend fundamentals, SQL syntax, and API patterns. Reviewed 30+ code submissions, giving architecture feedback.
+
+EDUCATION:
+- MSc Software Engineering (2:1 classification), Maynooth University, Ireland (2024 – 2025)
+- B.E. Computer Science, MRSPTU, India (2019 – 2023)
+
+KEY PROJECTS:
+1. Fault-Tolerant Notification Engine (Apache Kafka, Java LTS, PostgreSQL, Docker)
+- Event-driven notifications with at-least-once delivery, idempotency checks, backoff retries, and Dead Letter Queue isolation.
+2. ThoughtTrace - AI DSA Reasoning Tracker
+- Full-stack client-server app using Node, React, and Supabase. Multi-provider LLM swapper, protected API routing, rate limits.
+        `.trim();
+
+        navigator.clipboard.writeText(rawPayload).then(() => {
+          const btnTxt = document.getElementById('copy-cv-btn-txt');
+          btnTxt.textContent = "COPIED_OK";
+          setTimeout(() => {
+            btnTxt.textContent = "COPY_PLAIN";
+          }, 2000);
+        }).catch(err => {
+          console.error("Plain content transmission failed", err);
+        });
+      }
+
+      // --- Interactive Project flow Accordion toggle ---
+      function toggleVisualFlow(id) {
+        const block = document.getElementById(`visual-flow-${id}`);
+        const btnTxt = document.getElementById(`flow-btn-txt-${id}`);
+        
+        if (block.classList.contains('hidden')) {
+          block.classList.remove('hidden');
+          btnTxt.textContent = "COLLAPSE_DIAGRAM [-]";
+        } else {
+          block.classList.add('hidden');
+          btnTxt.textContent = "EXPAND_DIAGRAM [+]";
+        }
+      }
+
+      // --- Custom Live JVM & Kafka Stream Telemetry Simulation ---
+      function updateLiveTelemetry() {
+        const valHeap = document.getElementById('val-heap');
+        const valThreads = document.getElementById('val-threads');
+        const valTokens = document.getElementById('val-tokens');
+        const jmxFeed = document.getElementById('live-jmx-feed');
+        const offsetTxt = document.getElementById('partition-offset-txt');
+
+        if (!valHeap || !valThreads || !valTokens) return;
+
+        // Bouncing values variables
+        let randomHeap = (1.1 + Math.random() * 0.3).toFixed(2);
+        let randomThreads = Math.floor(38 + Math.random() * 9);
+        let randomTokens = Math.floor(82 + Math.random() * 19);
+        if (randomTokens > 100) randomTokens = 100;
+
+        valHeap.textContent = `${randomHeap} GB`;
+        valThreads.textContent = randomThreads;
+        valTokens.textContent = `${randomTokens}%`;
+
+        // Bouncing offset
+        let randomOffset = Math.floor(190000 + Math.random() * 20000);
+        let activePartition = Math.floor(Math.random() * 3);
+        if (offsetTxt) {
+          offsetTxt.textContent = `PART_${activePartition} / OFFSET ::${randomOffset}`;
+        }
+
+        // Live consolidated logs push
+        const timestamp = new Date().toLocaleTimeString();
+        const logs = [
+          `[${timestamp}] [KAFKA] Producer sent offset ${randomOffset} to Partition ${activePartition}`,
+          `[${timestamp}] [JMX] CPU cycle complete. GC cleaned ${Math.floor(20 + Math.random() * 80)}MB heap space`,
+          `[${timestamp}] [THREAD_POOL] Executing pooled task ID: 0x${Math.floor(Math.random() * 1000).toString(16).toUpperCase()}`,
+          `[${timestamp}] [DB_POOL] Released active database transaction lease back into Postgres pool`,
+          `[${timestamp}] [AI_SAFEGUARD] Verified prompt token rate compliance [Token Leak rate ~0.02%]`
+        ];
+
+        // Choose random log line
+        const randomLogLine = logs[Math.floor(Math.random() * logs.length)];
+        const newLogDiv = document.createElement('div');
+        if (randomLogLine.includes('KAFKA')) {
+          newLogDiv.className = 'text-brand-blue';
+        } else if (randomLogLine.includes('GC') || randomLogLine.includes('Postgres')) {
+          newLogDiv.className = 'text-green-400';
+        } else if (randomLogLine.includes('AI')) {
+          newLogDiv.className = 'text-amber-400 font-bold';
+        } else {
+          newLogDiv.className = 'text-gray-400';
+        }
+        newLogDiv.textContent = randomLogLine;
+
+        // Append and trim
+        jmxFeed.appendChild(newLogDiv);
+        while (jmxFeed.children.length > 15) {
+          jmxFeed.removeChild(jmxFeed.firstChild);
+        }
+
+        // Auto Scroll bottom of telemetry feed
+        jmxFeed.scrollTop = jmxFeed.scrollHeight;
+      }
+
+      // Run Loop on Window mount
+      window.addEventListener('DOMContentLoaded', () => {
+        // Init Lucide Icons dynamically
+        lucide.createIcons();
+        
+        // Starts the rotating typewriter
+        setTimeout(executeTypingLoop, 800);
+        
+        // Triggers initial reveals
+        triggerScrollReveal();
+
+        // Starts live backend JMX thread telemetry updates (runs every 1.8 seconds)
+        setInterval(updateLiveTelemetry, 1800);
+      });
+
+      // --- Intersection Observer (Scroll Reveal fade-up) ---
+      const revealItems = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px"
+      });
+
+      function triggerScrollReveal() {
+        revealItems.forEach(item => {
+          revealObserver.observe(item);
+        });
+      }
+
+      // --- Interactive copy to clipboard utility ---
+      function copyValue(copyTxt, feedbackId) {
+        navigator.clipboard.writeText(copyTxt).then(() => {
+          const feedbackNode = document.getElementById(feedbackId);
+          const originalText = feedbackNode.textContent;
+          feedbackNode.textContent = "COPIED!";
+          feedbackNode.classList.add('text-brand-blue');
+          setTimeout(() => {
+            feedbackNode.textContent = originalText;
+            feedbackNode.classList.remove('text-brand-blue');
+          }, 2000);
+        }).catch(err => {
+          console.error("Transmission copy failed ", err);
+        });
+      }
+
+      // --- Contact Form submission handling ---
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        const submitBtn = document.getElementById('form-submit-btn');
+        const successBox = document.getElementById('form-success-box');
+        
+        // Visual submit state toggle
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <i data-lucide="loader" class="w-4 h-4 animate-spin text-black"></i>
+          <span>TRANSMITTING_SEQUENCES...</span>
+        `;
+        lucide.createIcons();
+
+        // Simulate secure enterprise latency
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>FLUSH_BUFFER_AND_TRANSMIT</span>
+          `;
+          lucide.createIcons();
+          
+          // Clear standard fields
+          document.getElementById('form-name').value = '';
+          document.getElementById('form-email').value = '';
+          document.getElementById('form-subject').value = '';
+          document.getElementById('form-message').value = '';
+
+          // Show high-contrast response log
+          successBox.classList.remove('hidden');
+          // Hide success message after 7 seconds
+          setTimeout(() => {
+            successBox.classList.add('hidden');
+          }, 7000);
+        }, 1500);
+      }
+    </script>
+  </body>
+</html>
